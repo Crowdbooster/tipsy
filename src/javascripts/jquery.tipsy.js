@@ -77,6 +77,17 @@
                 } else {
                     $tip.css({visibility: 'visible', opacity: this.options.opacity});
                 }
+                
+                var thisTipsy = this;
+                // Remove timeouts to hide if we mouseover the tip itself
+                $tip.mouseover(function() {
+                    if (thisTipsy.delayHideFn) {
+                        clearTimeout(thisTipsy.delayHideFn);
+                    }
+                });
+                $tip.mouseout(function() {
+                    thisTipsy.delayHide();
+                });
             }
         },
         
@@ -86,6 +97,17 @@
             } else {
                 this.tip().remove();
             }
+        },
+
+        delayHide: function() {
+            var thisTip = this;
+            thisTip.delayHideFn = setTimeout(function() { 
+                if (thisTip.options.fade) {
+                    thisTip.tip().stop().fadeOut(function() { $(thisTip).remove(); });
+                } else {
+                    thisTip.tip().remove();
+                }
+             }, thisTip.options.delayOut);
         },
         
         fixTitle: function() {
