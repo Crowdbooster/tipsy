@@ -77,7 +77,7 @@
                 } else {
                     $tip.css({visibility: 'visible', opacity: this.options.opacity});
                 }
-                
+
                 var thisTipsy = this;
                 // Remove timeouts to hide if we mouseover the tip itself
                 $tip.mouseover(function() {
@@ -101,9 +101,9 @@
 
         delayHide: function() {
             var thisTip = this;
-            thisTip.delayHideFn = setTimeout(function() { 
+            thisTip.delayHideFn = setTimeout(function() {
                 if (thisTip.options.fade) {
-                    thisTip.tip().stop().fadeOut(function() { $(thisTip).remove(); });
+                    thisTip.tip().stop().fadeOut(function() { $(thisTip).tip().remove(); });
                 } else {
                     thisTip.tip().remove();
                 }
