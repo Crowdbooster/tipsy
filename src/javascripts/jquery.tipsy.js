@@ -103,7 +103,9 @@
             var thisTip = this;
             thisTip.delayHideFn = setTimeout(function() {
                 if (thisTip.options.fade) {
-                    thisTip.tip().stop().fadeOut(function() { $(thisTip).tip().remove(); });
+                    thisTip.tip().stop().fadeOut(function() { 
+                        thisTip.tip().remove(); 
+                    });
                 } else {
                     thisTip.tip().remove();
                 }
